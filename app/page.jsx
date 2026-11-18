@@ -45,10 +45,9 @@ export default function Overview() {
               <Sparkline values={s.spark} color={aqiColor(s.cat)} />
             </div>
             <div className="sc-metrics">
-              <span>PM2.5<b>{fix(s.pm25, 1)}</b></span><span>PM10<b>{fix(s.pm10, 0)}</b></span><span>Humidity<b>{fix(s.humidity, 0)}%</b></span>
+              <span>PM2.5<b>{fix(s.pm25, 1)}</b></span><span>Temperature<b>{fix(s.temperature, 1)}°C</b></span><span>Humidity<b>{fix(s.humidity, 0)}%</b></span>
             </div>
             <div className="sc-foot">
-              <span>{fix(s.temperature, 1)}°</span>·
               {s.offline
                 ? <span style={{ color: 'var(--aqi-moderate)', fontWeight: 600 }}>{s.ts ? ago(s.ts) : 'No data'}</span>
                 : s.delta != null && <span style={{ color: s.delta > 0 ? aqiColor(s.cat) : 'var(--aqi-good)' }}>{s.delta === 0 ? '→ no change' : `${s.delta > 0 ? '↑' : '↓'} ${Math.abs(s.delta)} points`}</span>}
@@ -56,7 +55,7 @@ export default function Overview() {
           </article>
         ))}
       </section>
-      <p className="muted" style={{ fontSize: 11.5, margin: '10px 0 14px' }}>PM2.5 / PM10 in µg/m³ · Temperature in °C · Sensitive = unhealthy for sensitive groups · Arrow = change vs. 24 h ago</p>
+      <p className="muted" style={{ fontSize: 11.5, margin: '10px 0 14px' }}>PM2.5 in µg/m³ · Temperature in °C · Sensitive = unhealthy for sensitive groups · Arrow = change vs. 24 h ago</p>
 
       <section className="split" style={{ gridTemplateColumns: '1.6fr 1fr' }}>
         <div className="card">
